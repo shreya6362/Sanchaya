@@ -10,43 +10,32 @@ module alu_32bit_tb;
     wire flag;
     wire [32:0] sum_out;
 
-    // Instantiate the ALU module
-    alu_32bit uut(
-        .clk(clk),
-        .rst(rst),
-        .a_in(a_in),
-        .b_in(b_in),
-        .select(select),
-        .y_out(y_out),
-        .flag(flag),
-        .sum_out(sum_out)
-    );
 
-    // Clock Generation
+    alu_32bit uut(.clk(clk),.rst(rst),.a_in(a_in),.b_in(b_in),.select(select),.y_out(y_out),.flag(flag),.sum_out(sum_out));
     initial begin
         clk = 0;
-        forever #5 clk = ~clk;  // 10ns clock period
+        forever #5 clk = ~clk; 
     end
 
-    // Reset and test stimulus
+  
     initial begin
-        rst = 1;  // Assert reset
-        #10 rst = 0;  // Deassert reset after 10ns
+        rst = 1; 
+        #10 rst = 0; 
 
-        // Loop through some possible values of a_in, b_in, and select
-        for (integer k = 0; k < 16; k = k + 1) begin  // Loop for select (4 bits, 0-15)
-            for (integer i = 0; i < 10; i = i + 1) begin  // Loop for a_in
-                for (integer j = 0; j < 10; j = j + 1) begin  // Loop for b_in
-                    a_in = i * 1000;  // Assign large values for testing
+ 
+        for (integer k = 0; k < 16; k = k + 1) begin 
+            for (integer i = 0; i < 10; i = i + 1) begin  
+                for (integer j = 0; j < 10; j = j + 1) begin 
+                    a_in = i * 1000;  
                     b_in = j * 2000;
                     select = k;
-                    #10;  // Wait 10ns for results
+                    #10;  
                     $display("Time=%0t | a_in=%b, b_in=%b, select=%b | y_out=%b, flag=%b, sum_out=%b",
                              $time, a_in, b_in, select, y_out, flag, sum_out);
                 end
             end
         end
         
-        $finish;  // End the simulation
+        $finish; 
     end
 endmodule
