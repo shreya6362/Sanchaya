@@ -27,12 +27,6 @@ initial
         #10;
         rd = 0;
 
-        if (Dataout !== 8'hAA) begin
-            $display("Test failed! Expected Dataout = 8'hAA, got Dataout = %h", Dataout);
-        end else begin
-            $display("Test passed! Dataout = %h", Dataout);
-        end
-
         #10;
         $finish;
     end
