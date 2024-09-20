@@ -1,20 +1,17 @@
-module alu_32bit(
-    input clk,
-    input rst,
-    input [31:0] a_in,
-    input [31:0] b_in,
-    input [3:0] select,
-    output reg [31:0] y_out,
-    output reg flag,
-    output reg [32:0] sum_out
-);
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
+module alu_32bit(input clk,rst,[31:0] a_in,[31:0] b_in,[3:0] sel,
+                 output reg [31:0] y_out,output reg flag,output reg [32:0] sum_out);
+    
+    always @(posedge clk or posedge rst) 
+        begin
+        if (rst) 
+        begin
             y_out <= 32'b0;
             sum_out <= 33'b0;
             flag <= 0;
-        end else begin
-            case (select)
+        end 
+        else 
+        begin
+            case (sel)
                 4'b0000: y_out <= a_in + b_in;        // Addition
                 4'b0001: y_out <= a_in - b_in;        // Subtraction
                 4'b0010: y_out <= a_in & b_in;        // AND
