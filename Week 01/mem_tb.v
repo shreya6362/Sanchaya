@@ -18,7 +18,7 @@ initial
         
         #10; rst = 0; 
         #10;
-
+        
         wr = 1;
         Datain = 8'hAA; 
         wr = 0;
@@ -26,10 +26,16 @@ initial
         rd = 1;
         #10;
         rd = 0;
-
+        if(Dataout!==8'hAA)
+            begin 
+                $display(" Test failed! Expected output Dataout=8'hAA, got Dataout=%h",Dataout);
+            end 
+        else 
+            begin 
+                $display(" Test Passed! Dataout=%h",Dataout);
+                
         #10;
         $finish;
     end
-
 endmodule
 
