@@ -5,10 +5,11 @@ module mem_tb;
     reg [7:0] Datain;
     wire [7:0] Dataout;
 
-    mem uut(clk, rst, rd, wr, Datain, Dataout);
-    always #5 clk = ~clk; 
+mem uut(clk, rst, rd, wr, Datain, Dataout);
+always #5 clk = ~clk; 
 
-    initial begin
+initial 
+    begin
         clk = 0;
         rst = 1;  
         wr = 0;
