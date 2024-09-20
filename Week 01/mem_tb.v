@@ -14,9 +14,10 @@ initial
         rst = 1;  
         wr = 0;
         rd = 0;
-        Datain = 8'b00001111;
+        Datain = 8'b00000001;
         
-        #10; rst = 0; 
+        #10; 
+        rst = 0; 
         #10;
         
         wr = 1;
