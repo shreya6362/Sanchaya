@@ -1,24 +1,23 @@
 `timescale 1ns / 1ps
 
 module alu_32bit_tb;
-    reg clk;
-    reg rst;
-    reg [31:0] a_in;
-    reg [31:0] b_in;
+    reg clk,rst;
+    reg [31:0] a_in, b_in;
     reg [3:0] select;
     wire [31:0] y_out;
     wire flag;
     wire [32:0] sum_out;
 
-
-    alu_32bit uut(.clk(clk),.rst(rst),.a_in(a_in),.b_in(b_in),.select(select),.y_out(y_out),.flag(flag),.sum_out(sum_out));
-    initial begin
+alu_32bit uut(.clk(clk),.rst(rst),.a_in(a_in),.b_in(b_in),.sel(sel),.y_out(y_out),.flag(flag),.sum_out(sum_out));
+    initial 
+    begin
         clk = 0;
         forever #5 clk = ~clk; 
     end
 
   
-    initial begin
+    initial 
+    begin
         rst = 1; 
         #10 rst = 0; 
 
