@@ -1,7 +1,7 @@
 module alu_32bit(input clk,rst,[31:0] a_in,[31:0] b_in,[3:0] sel,
                  output reg [31:0] y_out,output reg flag,output reg [32:0] sum_out);
     
-    always @(posedge clk or posedge rst) 
+    always @(posedge clk) 
         begin
         if (rst) 
         begin
