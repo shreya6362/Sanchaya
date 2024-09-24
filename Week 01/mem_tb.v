@@ -6,7 +6,8 @@ module mem_tb;
     wire [7:0] Dataout;
 
 mem uut(clk, rst, rd, wr, Datain, Dataout);
-always #5 clk = ~clk; 
+always 
+#5 clk = ~clk; 
 
 initial 
     begin
