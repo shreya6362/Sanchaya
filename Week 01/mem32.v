@@ -31,15 +31,18 @@ module mem32(clk, rst, rd, wr, addr, Indata, Dataout, valid);
 
     reg [1:0] write_counter;  
 
-    always @(posedge clk or posedge rst) 
+    always @(posedge clk) 
     begin
-        if (rst) begin
+        if (rst) 
+            begin
             Dataout <= 8'b0;    
             valid <= 0;         
             write_counter <= 2'b00; 
         end 
-        else begin
-            if (wr && !rd) begin
+        else
+            begin
+            if (wr && !rd) 
+                begin
                 case (write_counter)
                     2'b00: mem_array[0] <= Indata[7:0]; 
                     2'b01: mem_array[1] <= Indata[15:8]; 
@@ -49,14 +52,17 @@ module mem32(clk, rst, rd, wr, addr, Indata, Dataout, valid);
                         valid <= 1;                       
                     end
                 endcase
-                if (write_counter < 2'b11) begin
+                if (write_counter < 2'b11) 
+                    begin
                     write_counter <= write_counter + 1;   
                 end
             end 
-            else if (rd && !wr) begin
+            else if (rd && !wr) 
+                begin
                 Dataout <= mem_array[addr];              
             end 
-            else begin
+            else 
+                begin
                 Dataout <= 8'bz;                          
             end
         end
