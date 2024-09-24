@@ -27,7 +27,8 @@ module mem32_tb;
     wire valid;
 
    mem32 dut (.clk(clk),.rst(rst),.rd(rd),.wr(wr),.addr(addr),.Indata(Indata),.Dataout(Dataout),.valid(valid));
-    always #5 clk = ~clk;
+    always 
+        #5 clk = ~clk;
     initial 
     begin
  
